@@ -341,7 +341,7 @@ def multi_output(btn, selection):
     # df_tmp_2 = pd.DataFrame.from_records(response_2)
     # df_tmp_2 = df_tmp_2.rename(columns={'ds_return':'Return','serve_return':'Weight(%)'})
 
-    df_tmp_2 = pd.read_csv('database/srv_return.csv', low_memory=False)
+    df_tmp_2 = pd.read_csv('https://raw.githubusercontent.com/brenoyam/tennis_dash/main/srv_return.csv', low_memory=False)
     df_tmp_2  = df_tmp_2[df_tmp_2['Player']==selection]
 
 
