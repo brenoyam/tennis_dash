@@ -191,7 +191,7 @@ def dash_bar_chart(df):
 
 
 def dash_bar_service(df):
-    fig = px.bar(df, y='Return',x = 'Weight(%)',text_auto=True,orientation='h')
+    fig = px.bar(df, y='Return',x = 'Weight (%)',text_auto=True,orientation='h')
     fig.update_layout(
             yaxis=dict(
                 showgrid=True,
@@ -336,10 +336,13 @@ def multi_output(btn, selection):
     # df_tmp = pd.DataFrame.from_records(response)
 
 
-    url_player_2 = url_2 + selection
-    response_2 = requests.get(url=url_player_2).json()
-    df_tmp_2 = pd.DataFrame.from_records(response_2)
-    df_tmp_2 = df_tmp_2.rename(columns={'ds_return':'Return','serve_return':'Weight(%)'})
+    # url_player_2 = url_2 + selection
+    # response_2 = requests.get(url=url_player_2).json()
+    # df_tmp_2 = pd.DataFrame.from_records(response_2)
+    # df_tmp_2 = df_tmp_2.rename(columns={'ds_return':'Return','serve_return':'Weight(%)'})
+
+    df_tmp_2 = pd.read_csv('database/srv_return.csv', low_memory=False)
+    df_tmp_2  = df_tmp_2[df_tmp_2['Player']==selection]
 
 
 
