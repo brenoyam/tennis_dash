@@ -19,6 +19,7 @@ dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.4
 
 # app = dash.Dash(__name__)
 app = dash.Dash(__name__, external_stylesheets=estilos + [dbc_css])
+server = app.server
 
 
 
