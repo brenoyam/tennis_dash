@@ -19,7 +19,7 @@ dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.4
 
 # app = dash.Dash(__name__)
 app = dash.Dash(__name__, external_stylesheets=estilos + [dbc_css])
-server = app.server
+
 
 
 # load data from local or api later
@@ -245,7 +245,7 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         dbc.Col([
             html.Br(),
-            html.Img(src='/assets/le_wagon.png', id='logo_2',
+            html.Img(src='https://github.com/brenoyam/tennis_dash/blob/main/assets/le_wagon.png?raw=true', id='logo_2',
                     className='perfil_avatar'),
             html.Br(),
             html.P('Tennis Analytics', className="text-info"),
@@ -255,7 +255,7 @@ app.layout = dbc.Container(children=[
             # dbc.Button(id = "img_player",children=[], style={'background-color':'transparent','border-color':'transparent'}),
 
             dbc.Button(id = "botao_logo",
-                    children=[html.Img(src='/assets/tennis_logo.png', id='logo',
+                    children=[html.Img(src='https://github.com/brenoyam/tennis_dash/blob/main/assets/tennis_logo.png?raw=true', id='logo',
                     className='perfil_avatar')], style={'background-color':'transparent','border-color':'transparent'}),
 
 
@@ -279,8 +279,8 @@ app.layout = dbc.Container(children=[
         dbc.Col([
             dbc.Row([
                     dbc.Col(dbc.Button(id = "img_player",children=[], style={'background-color':'transparent','border-color':'transparent'}),width=2),
-                    dbc.Col(dbc.Card(dcc.Graph(id='graph_1',figure = blank_fig()),style={'padding':'0px','background-color':'transparent','background-image':"url('/assets/court_final.jpeg')",'background-repeat': 'no-repeat','background-size': '1800px 1800px','background-size': 'cover'}),width=5),
-                    dbc.Col(dbc.Card(dcc.Graph(id='graph_2',figure = blank_fig()),style={'padding':'0px','background-color':'transparent','background-image':"url('/assets/court_final.jpeg')",'background-repeat': 'no-repeat','background-size': '1800px 1800px','background-size': 'cover'}),width=5),
+                    dbc.Col(dbc.Card(dcc.Graph(id='graph_1',figure = blank_fig()),style={'padding':'0px','background-color':'transparent','background-image':"url('https://github.com/brenoyam/tennis_dash/blob/main/assets/court_final.jpeg?raw=true')",'background-repeat': 'no-repeat','background-size': '1800px 1800px','background-size': 'cover'}),width=5),
+                    dbc.Col(dbc.Card(dcc.Graph(id='graph_2',figure = blank_fig()),style={'padding':'0px','background-color':'transparent','background-image':"url('https://github.com/brenoyam/tennis_dash/blob/main/assets/court_final.jpeg?raw=true')",'background-repeat': 'no-repeat','background-size': '1800px 1800px','background-size': 'cover'}),width=5),
                 ],style={'margin':'10px'}),
 
             # dbc.Row([
@@ -322,16 +322,13 @@ def multi_output(btn, selection):
 
     # selection = 'Rafael Nadal'
 
-    df = pd.read_csv('database/charting-m-points-from-2017-enriched_small.csv', low_memory=False)
+    df = pd.read_csv('https://raw.githubusercontent.com/brenoyam/tennis_dash/main/charting-m-points-from-2017-enriched_small.csv',low_memory=False)
     df_tmp = filter_player_dash(df,selection)
 
 
     url = 'https://alvespublico.com:8001/player_summary/'
     url_2 = 'https://alvespublico.com:8001/player_top5/'
     # url_3 = 'https://alvespublico.com:8001/player_wins/'
-
-
-
 
     # url_player = url + selection
     # response = requests.get(url=url_player).json()
@@ -354,7 +351,7 @@ def multi_output(btn, selection):
     # data_win = pd.DataFrame(data_win, columns=['Win', 'Count'])
     # fig_win = dash_win(data_win)
 
-    df_wins = pd.read_csv('database/win_loss_table.csv', low_memory=False)
+    df_wins = pd.read_csv('https://raw.githubusercontent.com/brenoyam/tennis_dash/main/win_loss_table.csv', low_memory=False)
     df_wins = df_wins[df_wins['Player'] == selection]
     data_win = [['Win', df_wins['Win'].item()],['Loss', df_wins['Loss'].item()]]
     data_win = pd.DataFrame(data_win, columns=['Win', 'Count'])
@@ -379,9 +376,9 @@ def multi_output(btn, selection):
 
     fig_bar_service = dash_bar_service(df_tmp_2)
 
-
-    player_img = html.Img(src='/assets/' + selection + '.png', id='logo',className='perfil_avatar')
-
+    image_player = 'https://raw.githubusercontent.com/brenoyam/tennis_dash/main/assets/' + selection + '.png'
+    # player_img = html.Img(src='/assets/' + selection + '.png', id='logo',className='perfil_avatar')
+    player_img = html.Img(src=image_player, id='logo',className='perfil_avatar')
 
     return fig_1st,fig_2nd,fig_bar ,fig_bar_service, fig_win,player_img
 
